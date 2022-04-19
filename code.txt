@@ -1,0 +1,179 @@
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use mongoAssignmnet
+switched to db mongoAssignmnet
+> db.createCollection('users')
+{ "ok" : 1 }
+> db.getCollection("users").insert({"name":"manish","lastName":"kumar","email":"manishkumar@gmail.com","gender":"Male","ipAddress":1261,"age":32})
+WriteResult({ "nInserted" : 1 })
+> db.getCollection("users").insert({"name":"sohan","lastName":"sharma","email":"sohansharma7@gmail.com","gender":"Male","ipAddress":1221,"age":34})
+WriteResult({ "nInserted" : 1 })
+> db.getCollection("users").insert({"name":"rahul","lastName":"shah","email":"rahulshah@gmail.com","gender":"Male","ipAddress":1231,"age":36})
+WriteResult({ "nInserted" : 1 })
+> db.getCollection("users").insert({"name":"rohini","lastName":"sharma","email":"rohinishama@gmail.com","gender":"Female","ipAddress":1225,"age":38})
+WriteResult({ "nInserted" : 1 })
+> db.getCollection("users").insert({"name":"shahil","lastName":"sehni","email":"shahilsehni@gmail.com","gender":"Male","ipAddress":1229,"age":24})
+WriteResult({ "nInserted" : 1 })
+> db.getCollection("users").insertMany([{"name":"shahil","lastName":"sehni","email":"shahilsehni@gmail.com","gender":"Male","ipAddress":1229,"age":24},{"name":"shahil","lastName":"sehni","email":"shahilsehni@gmail.com","gender":"Male","ipAddress":1229,"age":24},{"name":"shahil","lastName":"sehni","email":"shahilsehni@gmail.com","gender":"Male","ipAddress":1229,"age":24},{"name":"shahil","lastName":"sehni","email":"shahilsehni@gmail.com","gender":"Male","ipAddress":1229,"age":24},{"name":"deepak","lastName":"kumar","email":"deepakkumar@gmail.com","gender":"Male","ipAddress":1529,"age":64}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("625ea2e8f10df6d314f1d283"),
+                ObjectId("625ea2e8f10df6d314f1d284"),
+                ObjectId("625ea2e8f10df6d314f1d285"),
+                ObjectId("625ea2e8f10df6d314f1d286"),
+                ObjectId("625ea2e8f10df6d314f1d287")
+        ]
+}
+> db.users.find({})
+{ "_id" : ObjectId("625ea23bf10df6d314f1d27e"), "name" : "manish", "lastName" : "kumar", "email" : "manishkumar@gmail.com", "gender" : "Male", "ipAddress" : 1261, "age" : 32 }
+{ "_id" : ObjectId("625ea25cf10df6d314f1d27f"), "name" : "sohan", "lastName" : "sharma", "email" : "sohansharma7@gmail.com", "gender" : "Male", "ipAddress" : 1221, "age" : 34 }
+{ "_id" : ObjectId("625ea278f10df6d314f1d280"), "name" : "rahul", "lastName" : "shah", "email" : "rahulshah@gmail.com", "gender" : "Male", "ipAddress" : 1231, "age" : 36 }
+{ "_id" : ObjectId("625ea292f10df6d314f1d281"), "name" : "rohini", "lastName" : "sharma", "email" : "rohinishama@gmail.com", "gender" : "Female", "ipAddress" : 1225, "age" : 38 }
+{ "_id" : ObjectId("625ea2aff10df6d314f1d282"), "name" : "shahil", "lastName" : "sehni", "email" : "shahilsehni@gmail.com", "gender" : "Male", "ipAddress" : 1229, "age" : 24 }
+{ "_id" : ObjectId("625ea2e8f10df6d314f1d283"), "name" : "shahil", "lastName" : "sehni", "email" : "shahilsehni@gmail.com", "gender" : "Male", "ipAddress" : 1229, "age" : 24 }
+{ "_id" : ObjectId("625ea2e8f10df6d314f1d284"), "name" : "shahil", "lastName" : "sehni", "email" : "shahilsehni@gmail.com", "gender" : "Male", "ipAddress" : 1229, "age" : 24 }
+{ "_id" : ObjectId("625ea2e8f10df6d314f1d285"), "name" : "shahil", "lastName" : "sehni", "email" : "shahilsehni@gmail.com", "gender" : "Male", "ipAddress" : 1229, "age" : 24 }
+{ "_id" : ObjectId("625ea2e8f10df6d314f1d286"), "name" : "shahil", "lastName" : "sehni", "email" : "shahilsehni@gmail.com", "gender" : "Male", "ipAddress" : 1229, "age" : 24 }
+{ "_id" : ObjectId("625ea2e8f10df6d314f1d287"), "name" : "deepak", "lastName" : "kumar", "email" : "deepakkumar@gmail.com", "gender" : "Male", "ipAddress" : 1529, "age" : 64 }
+> db.user.findOne({"name": "rohini"})
+null
+> db.users.findOne({"name": "rohini"})
+{
+        "_id" : ObjectId("625ea292f10df6d314f1d281"),
+        "name" : "rohini",
+        "lastName" : "sharma",
+        "email" : "rohinishama@gmail.com",
+        "gender" : "Female",
+        "ipAddress" : 1225,
+        "age" : 38
+}
+> db.getCollection("users").update({"lastName":"shah"},{"lastName" : "pratap"}) 
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.getCollection("users").updateMany({age:24},{$set:{eligible:"true"}})
+{ "acknowledged" : true, "matchedCount" : 5, "modifiedCount" : 5 }
+> db.getCollection("users").find({}).pretty()        
+{
+        "_id" : ObjectId("625ea23bf10df6d314f1d27e"),
+        "name" : "manish",
+        "lastName" : "kumar",
+        "email" : "manishkumar@gmail.com",
+        "gender" : "Male",
+        "ipAddress" : 1261,
+        "age" : 32
+}
+{
+        "_id" : ObjectId("625ea25cf10df6d314f1d27f"),
+        "name" : "sohan",
+        "lastName" : "sharma",
+        "email" : "sohansharma7@gmail.com",
+        "gender" : "Male",
+        "ipAddress" : 1221,
+        "age" : 34
+}
+{ "_id" : ObjectId("625ea278f10df6d314f1d280"), "lastName" : "pratap" }
+{
+        "_id" : ObjectId("625ea292f10df6d314f1d281"),
+        "name" : "rohini",
+        "lastName" : "sharma",
+        "email" : "rohinishama@gmail.com",
+        "gender" : "Female",
+        "ipAddress" : 1225,
+        "age" : 38
+}
+{
+        "_id" : ObjectId("625ea2aff10df6d314f1d282"),
+        "name" : "shahil",
+        "lastName" : "sehni",
+        "email" : "shahilsehni@gmail.com",
+        "gender" : "Male",
+        "ipAddress" : 1229,
+        "age" : 24,
+        "eligible" : "true"
+}
+{
+        "_id" : ObjectId("625ea2e8f10df6d314f1d283"),
+        "name" : "shahil",
+        "lastName" : "sehni",
+        "email" : "shahilsehni@gmail.com",
+        "gender" : "Male",
+        "ipAddress" : 1229,
+        "age" : 24,
+        "eligible" : "true"
+}
+{
+        "_id" : ObjectId("625ea2e8f10df6d314f1d284"),
+        "name" : "shahil",
+        "lastName" : "sehni",
+        "email" : "shahilsehni@gmail.com",
+        "gender" : "Male",
+        "ipAddress" : 1229,
+        "age" : 24,
+        "eligible" : "true"
+}
+{
+        "_id" : ObjectId("625ea2e8f10df6d314f1d285"),
+        "name" : "shahil",
+        "lastName" : "sehni",
+        "email" : "shahilsehni@gmail.com",
+        "gender" : "Male",
+        "ipAddress" : 1229,
+        "age" : 24,
+        "eligible" : "true"
+}
+{
+        "_id" : ObjectId("625ea2e8f10df6d314f1d286"),
+        "name" : "shahil",
+        "lastName" : "sehni",
+        "email" : "shahilsehni@gmail.com",
+        "gender" : "Male",
+        "ipAddress" : 1229,
+        "age" : 24,
+        "eligible" : "true"
+}
+{
+        "_id" : ObjectId("625ea2e8f10df6d314f1d287"),
+        "name" : "deepak",
+        "lastName" : "kumar",
+        "email" : "deepakkumar@gmail.com",
+        "gender" : "Male",
+        "ipAddress" : 1529,
+        "age" : 64
+}
+> db.users.remove({"name": "deepak"})
+WriteResult({ "nRemoved" : 1 })
+> db.users.deleteMany({"age": 24})
+{ "acknowledged" : true, "deletedCount" : 5 }
+> db.getCollection("users").find({}).pretty() 
+{
+        "_id" : ObjectId("625ea23bf10df6d314f1d27e"),
+        "name" : "manish",
+        "lastName" : "kumar",
+        "email" : "manishkumar@gmail.com",
+        "gender" : "Male",
+        "ipAddress" : 1261,
+        "age" : 32
+}
+{
+        "_id" : ObjectId("625ea25cf10df6d314f1d27f"),
+        "name" : "sohan",
+        "lastName" : "sharma",
+        "email" : "sohansharma7@gmail.com",
+        "gender" : "Male",
+        "ipAddress" : 1221,
+        "age" : 34
+}
+{ "_id" : ObjectId("625ea278f10df6d314f1d280"), "lastName" : "pratap" }
+{
+        "_id" : ObjectId("625ea292f10df6d314f1d281"),
+        "name" : "rohini",
+        "lastName" : "sharma",
+        "email" : "rohinishama@gmail.com",
+        "gender" : "Female",
+        "ipAddress" : 1225,
+        "age" : 38
+}
+> db.dropDatabase()
+{ "ok" : 1 }
